@@ -1,0 +1,235 @@
+#editor {
+	font-family: "Courier Prime", Courier, monospace;
+	font-size: 15px;
+	line-height: 1.5;
+	padding: 8px 8px 8px 48px;
+	tab-size: 2;
+	white-space: pre;
+	overflow: auto;
+	min-width: 0;
+	flex: 1;
+	width: 100%;
+	/* biome-ignore lint/complexity/noImportantStyles: overrides host page styles */
+	color: transparent !important;
+	caret-color: #f8f8f2;
+	/* biome-ignore lint/complexity/noImportantStyles: overrides host page styles */
+	background: transparent !important;
+	position: relative;
+	z-index: 1;
+	border: none;
+	outline: none;
+	resize: none;
+	box-sizing: border-box;
+	margin: 0;
+}
+
+#editor::selection {
+	background: rgba(100, 149, 237, 0.4);
+}
+
+#editor-wrapper {
+	position: relative;
+	flex: 0.6;
+	display: flex;
+	min-width: 0;
+	overflow: hidden;
+	background: #1a1a1a;
+}
+
+#highlight-bg {
+	position: absolute;
+	top: 0;
+	left: 0;
+	min-width: 100%;
+	overflow: visible;
+	background: #1a1a1a;
+	pointer-events: none;
+	z-index: 0;
+}
+
+#highlight-content {
+	font-family: "Courier Prime", Courier, monospace;
+	font-size: 15px;
+	line-height: 1.5;
+	padding: 8px 8px 8px 48px;
+	tab-size: 2;
+	white-space: pre;
+	color: #d4d4d4;
+}
+
+#line-numbers-inner {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 40px;
+	font-family: "Courier Prime", Courier, monospace;
+	font-size: 15px;
+	line-height: 1.5;
+	padding: 8px 6px 8px 0;
+	box-sizing: border-box;
+	text-align: right;
+	white-space: pre;
+	pointer-events: none;
+	z-index: 5;
+	user-select: none;
+}
+
+#ti-overlay {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	pointer-events: none;
+	overflow: hidden;
+	z-index: 2;
+}
+
+#ti-codelens-overlay {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	pointer-events: none;
+	overflow: hidden;
+	z-index: 3;
+}
+
+.ti-type-support-label {
+	display: inline-flex;
+	align-items: center;
+	gap: 4px;
+	color: #aaa;
+	font-size: 13px;
+	cursor: pointer;
+}
+
+.ti-type-support-label input[type="checkbox"] {
+	cursor: pointer;
+	margin: 0;
+	accent-color: #666;
+}
+
+#ti-completion-popup {
+	position: fixed;
+	display: none;
+	background: #1e1e1e;
+	border: 1px solid #555;
+	font-size: 13px;
+	font-family: monospace;
+	z-index: 9998;
+	max-height: 200px;
+	overflow-y: auto;
+	min-width: 220px;
+	max-width: 480px;
+	box-shadow: 2px 4px 12px rgba(0, 0, 0, 0.6);
+}
+
+#ti-completion-popup.visible {
+	display: block;
+}
+
+#ti-completion-popup > div {
+	padding: 3px 10px;
+	cursor: pointer;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	color: #d4d4d4;
+}
+
+#ti-completion-popup > div.selected {
+	background: #094771;
+	color: #fff;
+}
+
+.ti-tooltip {
+	position: fixed;
+	display: none;
+	background: #222;
+	color: #f88;
+	border: 1px solid #c44;
+	font-size: 12px;
+	font-family: monospace;
+	padding: 3px 8px;
+	border-radius: 3px;
+	pointer-events: none;
+	z-index: 9999;
+	max-width: 400px;
+	white-space: pre-wrap;
+}
+
+.ti-tooltip.visible {
+	display: block;
+}
+
+.ti-error-marker {
+	position: absolute;
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='6' height='3'%3E%3Cpath d='M0 2 Q1.5 0 3 2 Q4.5 4 6 2' stroke='%23f66' fill='none' stroke-width='1.2'/%3E%3C/svg%3E");
+	background-repeat: repeat-x;
+	background-position: left bottom;
+	background-size: 6px 3px;
+	pointer-events: auto;
+	cursor: help;
+}
+
+.ti-codelens {
+	position: absolute;
+	color: #666;
+	white-space: nowrap;
+}
+
+.ti-ruler {
+	position: absolute;
+	visibility: hidden;
+	white-space: pre;
+}
+
+.ti-line-number {
+	color: #858585;
+}
+
+.ti-line-number.active {
+	color: #c6c6c6;
+}
+
+.hl-keyword {
+	color: #c586c0;
+}
+.hl-builtin-literal {
+	color: #569cd6;
+}
+.hl-constant {
+	color: #4ec9b0;
+}
+.hl-method {
+	color: #dcdcaa;
+}
+.hl-string {
+	color: #ce9178;
+}
+.hl-escape {
+	color: #d7ba7d;
+}
+.hl-regexp {
+	color: #d16969;
+}
+.hl-symbol {
+	color: #569cd6;
+}
+.hl-number {
+	color: #b5cea8;
+}
+.hl-comment {
+	color: #6a9955;
+}
+.hl-instance-variable {
+	color: #9cdcfe;
+}
+.hl-interpolation {
+	color: #569cd6;
+}
+.hl-default {
+	color: #d4d4d4;
+}

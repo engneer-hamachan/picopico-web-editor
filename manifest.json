@@ -1,0 +1,49 @@
+{
+	"manifest_version": 3,
+	"name": "PicoRuby R2P2 Editor",
+	"version": "1.0",
+	"description": "Syntax highlight, type check, completion, and code lens for PicoRuby R2P2 terminal",
+	"content_security_policy": {
+		"extension_pages": "script-src 'self' 'wasm-unsafe-eval'; object-src 'self'"
+	},
+	"background": {
+		"service_worker": "background.js"
+	},
+	"content_scripts": [
+		{
+			"matches": [
+				"https://picoruby.org/terminal",
+				"http://localhost:*/terminal"
+			],
+			"css": ["editor/editor.css"],
+			"js": [
+				"editor/content.js",
+				"worker/TiWorker.js",
+				"editor/line_numbers.js",
+				"editor/syntax_highlight/tokenizer/utils.js",
+				"editor/syntax_highlight/tokenizer/constants.js",
+				"editor/syntax_highlight/tokenizer/string_tokenizer.js",
+				"editor/syntax_highlight/tokenizer/comment_tokenizer.js",
+				"editor/syntax_highlight/tokenizer/classifier.js",
+				"editor/syntax_highlight/tokenizer/common_tokenizer.js",
+				"editor/syntax_highlight/tokenizer/identifier_tokenizer.js",
+				"editor/syntax_highlight/tokenizer/tokenizer.js",
+				"editor/syntax_highlight/highlight.js",
+				"editor/type_check.js",
+				"editor/completion.js",
+				"editor/auto_indent.js"
+			],
+			"run_at": "document_idle"
+		}
+	],
+	"web_accessible_resources": [
+		{
+			"resources": [
+				"worker/worker_executor.js",
+				"worker/wasm_exec.js",
+				"worker/ti.wasm"
+			],
+			"matches": ["https://picoruby.github.io/*", "http://localhost:*/*"]
+		}
+	]
+}
