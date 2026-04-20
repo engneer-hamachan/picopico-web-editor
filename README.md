@@ -52,7 +52,5 @@ Type Support currently covers only some PicoRuby classes. More classes will be s
 - [ ] Replace JS implementation with PicoRuby WASM
 - [ ] Fix minor bugs
   - [ ] Completion sometimes does not work for arguments
-  - [ ] Support `[]=` and `[]` methods
-  - [ ] Support `hoge=` methods
   - [ ] Type checking breaks for functions with splat arguments
 - [ ] Complete RBS support to achieve full Type Support based on PicoRuby's RBS
