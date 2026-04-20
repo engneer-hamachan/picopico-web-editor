@@ -143,24 +143,30 @@
 		const lines = editor.value.split("\n");
 		const charWidth = measureCharWidth(computedStyle);
 
-		infos.forEach((info) => {
-			const lineText = lines[info.row - 1] || "";
+		const rowToSignatures = new Map();
+		for (const info of infos) {
+			if (!rowToSignatures.has(info.row)) rowToSignatures.set(info.row, []);
+			rowToSignatures.get(info.row).push(info.signature);
+		}
+
+		for (const [row, signatures] of rowToSignatures) {
+			const lineText = lines[row - 1] || "";
 			const left = paddingLeft + lineText.length * charWidth + 8;
-			const top = paddingTop + (info.row - 1) * lineHeight - scrollTop;
+			const top = paddingTop + (row - 1) * lineHeight - scrollTop;
 			const div = document.createElement("div");
 
 			div.className = "ti-codelens";
-			div.dataset.row = info.row;
+			div.dataset.row = row;
 			div.style.left = `${left}px`;
 			div.style.top = `${top}px`;
 			div.style.height = `${lineHeight}px`;
 			div.style.lineHeight = `${lineHeight}px`;
 			div.style.fontSize = computedStyle.fontSize;
 			div.style.fontFamily = computedStyle.fontFamily;
-			div.textContent = `# ${info.signature}`;
+			div.textContent = signatures.map((s) => `# ${s}`).join("  ");
 
 			overlay.appendChild(div);
-		});
+		}
 	}
 
 	worker.onmessage = (event) => {
