@@ -58,6 +58,15 @@
 			updateActiveLine(editor);
 		});
 
+		let lastValue = editor.value;
+
+		setInterval(() => {
+			if (editor.value !== lastValue) {
+				lastValue = editor.value;
+				updateLineNumbers(editor);
+			}
+		}, 200);
+
 		updateLineNumbers(editor);
 	}
 
