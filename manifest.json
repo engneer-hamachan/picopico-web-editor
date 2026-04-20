@@ -1,6 +1,6 @@
 {
 	"manifest_version": 3,
-	"name": "PicoRuby R2P2 Editor",
+	"name": "picopico web editor",
 	"version": "1.0",
 	"description": "Syntax highlight, type check, completion, and code lens for PicoRuby R2P2 terminal",
 	"content_security_policy": {
@@ -13,7 +13,7 @@
 		{
 			"matches": [
 				"https://picoruby.org/terminal",
-				"http://localhost:*/terminal"
+				"http://localhost:4000/terminal"
 			],
 			"css": ["editor/editor.css"],
 			"js": [
