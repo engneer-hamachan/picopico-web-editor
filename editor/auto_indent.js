@@ -40,7 +40,7 @@
 
 	// def method(...) = expr
 	function isEndlessDef(line) {
-		return /\bdef\s+\S+\s*(?:\([^)]*\))?\s*=(?![>=])/.test(stripComment(line));
+		return /\bdef\s+\S+\s*(?:\([^)]*\))?\s+=(?![>=])/.test(stripComment(line));
 	}
 
 	// \, ., ,, :, *, /, %, +, =, -, |, &, ?, ||, &&, and, or, (, [, {
